@@ -18,5 +18,5 @@ elem.clear()
 elem.send_keys("iphone")
 elem.send_keys(Keys.RETURN)
 
-elem.clear()
+# elem.clear()
 # elem1 = driver.find_element(By.NAME, "search")
