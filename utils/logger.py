@@ -2,10 +2,6 @@
 class Logger:
     begin = 0
     log_file_name = 'dbg_report.txt'
-    # @staticmethod
-    # def write_to_file(msg):
-    #     f = open('report.txt', 'a')
-    #     f.writelines(msg)
 
     @staticmethod
     def log(msg):
@@ -19,4 +15,3 @@ class Logger:
         else:
             f = open(Logger.log_file_name, 'a')
             f.write(msg + '\n')
-        # f.writelines(msg)
