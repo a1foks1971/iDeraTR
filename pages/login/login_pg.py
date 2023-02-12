@@ -11,6 +11,7 @@ class LoginPage(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
+        self.driver.get('https://gurock.testrail.com/')
 
     def fill_email(self, user_email):
         Logger.log('fill_email(' + user_email + ')')
@@ -23,3 +24,10 @@ class LoginPage(BasePage):
     def click_submit(self):
         Logger.log('click_submit()')
         self.do_click(self.SUBMIT_BUTTON_BY)
+
+    def click_js_submit(self):
+        Logger.log('click_js_submit()')
+        self.click_js(self.SUBMIT_BUTTON_BY)
+    def click_js_submit_css(self):
+        Logger.log('click_js_submit_css()')
+        self.click_js_css("button#button_primary")

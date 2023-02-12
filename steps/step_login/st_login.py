@@ -11,5 +11,6 @@ class SLogin(StepBase):
     def login_as(self, user_email, user_password):
         self.loginPage.fill_email(user_email)
         self.loginPage.fill_password(user_password)
+        # self.loginPage.click_js_submit()
         self.loginPage.click_submit()
 

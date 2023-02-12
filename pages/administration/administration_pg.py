@@ -1,8 +1,6 @@
 from selenium.webdriver.common.by import By
-
 from pages._base_pg import BasePage
-from utils.logger import Logger
-from pages.dashboard.content_pg import Content
+from pages.administration.content_pg import Content
 
 
 class Administration(BasePage):

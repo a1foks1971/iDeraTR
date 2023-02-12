@@ -4,6 +4,7 @@ from steps.dashboard.st_dashboard import SDashboard
 from steps.administration.st_administration import SAdministration
 from tests.test_base import BaseTest
 from config.users import Users
+from utils.functions import sleep_sec
 
 
 class Test_Dashboard_Loading(BaseTest):
@@ -15,8 +16,11 @@ class Test_Dashboard_Loading(BaseTest):
         self.onDashboardPage.verify_dashboard_has_been_loaded()
         self.onDashboardPage.verify_current_user_full_name(Users.get_user_expected_full_name())
         self.onDashboardPage.verify_dashboard_menu_is_selected()
-        # self.onDashboardPage.open_first_project()
-
         self.onDashboardPage.click_on_administration_menu()
+
         self.onAdministrationPage = SAdministration(self.driver)
         self.onAdministrationPage.verify_administration_has_been_loaded()
+        self.onAdministrationPage.verify_administration_menu_is_selected()
+        self.onAdministrationPage.open_first_project()
+        sleep_sec(30)
+

@@ -1,21 +1,29 @@
-import js2py
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import  expected_conditions as EC
 from selenium.webdriver.common.by import By
 from utils.logger import Logger
+from utils.functions import sleep_sec
+
 
 class BasePage():
 
     def __init__(self, driver):
         self.driver = driver
 
-    def click_js(self, css_selector):
-        Logger.log('_base_pg.click_js("'+css_selector+'") BEGIN')
-        by_locator = (By.CSS_SELECTOR, css_selector)
-        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(by_locator))
-        js_function = "function f() {return document.querySelector('"+css_selector+"').click();}"
-        js2py.eval_js(js_function)
+    def click_js(self, by_locator):
+        Logger.log('_base_pg.click_js(...) BEGIN')
+        s = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(by_locator))
+        Logger.log('_base_pg.click_js(...) WebDriverWait() PASSED')
+        self.driver.execute_script("arguments[0].click();", s)
         Logger.log('_base_pg.click_js(...) END')
+
+    def click_js_css(self, css_selector):
+        Logger.log('_base_pg.click_js_css("'+css_selector+'") BEGIN')
+        by_locator = (By.CSS_SELECTOR, css_selector)
+        s = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(by_locator))
+        Logger.log('_base_pg.click_js_css(css) WebDriverWait() PASSED')
+        self.driver.execute_script("arguments[0].click();", s)
+        Logger.log('_base_pg.click_js_css(css) END')
 
     def do_send_keys(self, by_locator, query):
         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(by_locator)).send_keys(query)
@@ -34,7 +42,11 @@ class BasePage():
         return element.is_displayed()
 
     def get_elements(self, by_locator):
+        Logger.log('_base_pg.get_elements() BEGIN')
         elements = self.driver.find_elements(by_locator)
+        elements_number = len(elements)
+        Logger.log('_base_pg.get_elements() : elements_number = "'+str(elements_number)+'"')
+        assert 0 < elements_number
         WebDriverWait(self.driver, 10).until(EC.visibility_of(elements[0]))
         return self.driver.find_elements(by_locator)
 
