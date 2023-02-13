@@ -1,4 +1,4 @@
 /.idea/*
-#/.testdata/*
+/.testdata/*
 /.reports/*
 dbg_report.txt
