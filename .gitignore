@@ -1,5 +1,4 @@
 /.idea/*
-/.testdata/*
-/.testdata/users.py
+testdata/users.py
 /.reports/*
 dbg_report.txt
